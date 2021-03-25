@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from calculadora import Calculadora
 
 app = Flask(_name_)
@@ -42,15 +42,17 @@ def divicion(valor_1, valor_2):
 @app.route('/operacion/<operador>/<int:valor_1>/<int_valor_2>')
 def operacion(operador, valor_1, valor_2):
     if operador == "+":
-        return suma(valor_1, valor_2)
+        resultado = suma(valor_1, valor_2)
     elif operador == "-"
-        return resta(valor_1, valor_2)
+        resultado = resta(valor_1, valor_2)
     elif operador == "*"
-        return multiplicacion(valor_1, valor_2)
-    elif operador == "/"
-        return divicion(valor_1, valor_2)
+        resultado = multiplicacion(valor_1, valor_2)
+    elif operador == "d"
+        resultado = divicion(valor_1, valor_2)
     else:
-        return hola()
+       resultado = hola()
+    
+    return render_template('calculadora.html', resultado = resultado)
 
 if __name__ == '_main_':
     app.run(debug =  True)
